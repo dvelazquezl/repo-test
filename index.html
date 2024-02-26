@@ -1,22 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css">
-    <title>Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,800"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              montserrat: ["Montserrat"],
+            },
+            colors: {
+              pink: "#ff416c",
+              brown: "#3e363f",
+              thingray: "#f6f5f7",
+            },
+          },
+        },
+      };
+    </script>
+    <script src="script.js" defer></script>
+    <title>Calculadora de Hidratación Basal</title>
   </head>
-  <body>
-    <div>
-      <div>
-        <h1>Tests</h1>
-        <p>Tests</p>
-      </div>
-      <div>
-        <h2>Tests</h2>
-        <p>Tests</p>
+  <body class="bg-thingray font-montserrat">
+    <div class="container">
+      <div class="flex w-screen h-screen justify-center items-center">
+        <div class="w-[900px] h-[500px] drop-shadow-2xl">
+          <div class="grid grid-cols-2 h-full">
+            <div
+              class="bg-white rounded-l-[20px] flex flex-col w-full h-full justify-center items-center text-center space-y-5"
+            >
+              <h1 class="text-brown text-[32px] font-semibold">
+                Calculadora de Hidratación Basal
+              </h1>
+              <input
+                type="number"
+                placeholder="Peso en kg."
+                id="mass"
+                on
+                class="rounded-md ring-1 ring-gray-200 px-3 py-2"
+              />
+              <p>Completa todos los datos</p>
+              <p class="hidden text-red-600">
+                * Debes completar todos los datos
+              </p>
+              <button
+                class="rounded-full bg-pink text-white tracking-widest uppercase px-9 py-3 hover:bg-pink/75"
+                onclick="calc()"
+              >
+                Calcular
+              </button>
+              <p id="basal" class="hidden"></p>
+              <p class="hidden">71 cc/h</p>
+              <p class="hidden">m+m/2 : 105 cc/h</p>
+            </div>
+            <div
+              class="bg-pink rounded-r-[20px] flex flex-col w-full h-full justify-center items-center space-y-5"
+            >
+              <h1 class="text-white text-4xl font-bold">¿Como se calcula?</h1>
+              <ul class="text-white text-center px-10 space-y-4">
+                <li>De 0kg a 10kg, se calcula 100cc por cada kilo.</li>
+                <li>
+                  Se suman 50cc por cada kilo de peso por arriba de 10kg, hasta
+                  20 kg.
+                </li>
+                <li>
+                  De 20kg para arriba, se suman 20cc por cada kilo adicional.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <script src="script.js"></script>
   </body>
 </html>
