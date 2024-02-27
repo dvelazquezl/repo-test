@@ -1,52 +1,37 @@
-console.log("Hello world");
-
-let variable = "hello world";
-function foo() {
-  let variable_2 = "hello world from foo";
-  console.log(variable);
-}
-
-// foo();
-
-const num1 = 230;
-const num2 = 40;
-const num3 = 50;
-
-function test(a, b, c) {
-  let mayor;
-  if (a > b) {
-    mayor = a;
-  } else {
-    mayor = b;
+/**
+ * Calcula el volumen diario en base al peso.
+ * @param {number} peso - El peso en kilogramos.
+ * @returns {number} El volumen diario calculado.
+ */
+function calcVolumenDiario(peso) {
+  let volumen = 0;
+  let aCalcular = 0;
+  let resto = peso;
+  if (resto > 20) {
+    aCalcular = peso - 20;
+    volumen += aCalcular * 20;
+    resto = peso - aCalcular;
   }
-
-  if (c > mayor) {
-    mayor = c;
+  if (resto > 10) {
+    aCalcular = resto - 10;
+    volumen += aCalcular * 50;
+    resto = resto - aCalcular;
   }
-  console.log(mayor);
+  volumen += resto * 100;
+  return volumen;
 }
 
-function calc() {
-  let mass = document.getElementById("mass").value;
-  const result = mass * 35;
-  document.getElementById("basal").classList.remove("hidden");
-  document.getElementById("basal").innerHTML = `${result} ml.`;
+/**
+ * Calcula el valor basal en base al peso ingresado en un campo de entrada.
+ */
+function calcBasal() {
+  let peso = parseInt(document.getElementById("mass").value);
+  const volumenDiaro = calcVolumenDiario(peso);
+  // Math.round() sirve para redondear al entero mas cercano
+  const flujo = Math.round(volumenDiaro / 24); // tambien es mantenimiento
+  const mPlusM2 = Math.round(flujo * 1.5);
+
+  console.log("volumen diario", volumenDiaro);
+  console.log("mantenimiento", flujo);
+  console.log("m+m/2", mPlusM2);
 }
-
-// test(num1, num2, num3);
-
-function max(data) {
-  let mayor = data[0];
-  for (let i = 1; i < data.length; i++) {
-    if (data[i] > mayor) {
-      mayor = data[i];
-    }
-  }
-  return mayor;
-}
-
-const numbersList = [14, 20, 3, 4, 50, 16, 27, 78, 9, 10];
-
-// console.log(max(numbersList));
-
-// console.log(_.max(numbersList));
